@@ -1,0 +1,14 @@
+# Automatically added
+*.iml
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+# Gradle
+gradlew
+gradlew.bat
+gradle/
+.gradle
