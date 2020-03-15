@@ -5,6 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.widget.ImageView
 import androidx.constraintlayout.solver.widgets.Rectangle
+import androidx.core.graphics.drawable.toBitmap
 
 
 class CanvasView: ImageView {
@@ -19,6 +20,8 @@ class CanvasView: ImageView {
 
     var commandInterpreter = CommandInterpreter()
 
+    var turtleIcon: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.turtle)
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
@@ -29,14 +32,14 @@ class CanvasView: ImageView {
             canvas?.drawLine(line.startX, line.startY, line.endX, line.endY, paint)
         }
 
-        var turtleIcon: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.turtle)
-        val resize = 4
-        turtleIcon = Bitmap.createScaledBitmap(turtleIcon, 15*resize, 23*resize, false)
-        val matrix = Matrix()
         val turtle = commandInterpreter.canvasState.turtle
+        var modifiedTurtleIcon = Bitmap.createScaledBitmap(turtleIcon, turtle.width, turtle.height, false)
+        val matrix = Matrix()
         matrix.postRotate(turtle.direction.toFloat())
-        turtleIcon = Bitmap.createBitmap(turtleIcon, 0, 0, turtleIcon.width, turtleIcon.height, matrix, true)
-        canvas?.drawBitmap(turtleIcon, turtle.x.toFloat(), turtle.y.toFloat(), Paint())
+        modifiedTurtleIcon = Bitmap.createBitmap(modifiedTurtleIcon, 0, 0, modifiedTurtleIcon.width, modifiedTurtleIcon.height, matrix, false)
+        var paint = Paint()
+        paint.alpha = 254
+        canvas?.drawBitmap(modifiedTurtleIcon, turtle.x.toFloat()-20, turtle.y.toFloat()-20, paint)
     }
 
     fun addCommand(entry: String) {

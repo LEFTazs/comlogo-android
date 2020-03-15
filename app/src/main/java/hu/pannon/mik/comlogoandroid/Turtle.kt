@@ -4,6 +4,8 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 class Turtle(var x: Double, var y: Double) {
+    var width: Int = 15*4
+    var height: Int = 23*4
     var direction: Double = 0.0
     set(value) {
         field = value
