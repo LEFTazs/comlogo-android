@@ -21,7 +21,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:text="Ide írd a kódot"
                     android:ems="10"
                     android:id="@+id/codeInputBox" android:layout_weight="1"/>
             <Button

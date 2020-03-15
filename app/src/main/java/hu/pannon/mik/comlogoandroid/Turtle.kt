@@ -4,7 +4,6 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 class Turtle(var x: Double, var y: Double) {
-    var isPenDown: Boolean = true
     var direction: Double = 0.0
     set(value) {
         field = value

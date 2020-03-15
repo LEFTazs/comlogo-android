@@ -17,7 +17,7 @@ class CanvasView: ImageView {
 
     var lines: MutableList<Line> = mutableListOf()
 
-    var turtle = Turtle(100.0, 100.0)
+    var commandInterpreter = CommandInterpreter()
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
@@ -33,15 +33,15 @@ class CanvasView: ImageView {
         val resize = 4
         turtleIcon = Bitmap.createScaledBitmap(turtleIcon, 15*resize, 23*resize, false)
         val matrix = Matrix()
+        val turtle = commandInterpreter.canvasState.turtle
         matrix.postRotate(turtle.direction.toFloat())
         turtleIcon = Bitmap.createBitmap(turtleIcon, 0, 0, turtleIcon.width, turtleIcon.height, matrix, true)
         canvas?.drawBitmap(turtleIcon, turtle.x.toFloat(), turtle.y.toFloat(), Paint())
     }
 
-    fun addLine(line: Line) {
-        turtle.rotate(10.0)
-        turtle.moveForward(15.0)
-        lines.add(line)
+    fun addCommand(entry: String) {
+        val newLines = commandInterpreter.interpret(entry)
+        this.lines.addAll(newLines)
     }
 
 }

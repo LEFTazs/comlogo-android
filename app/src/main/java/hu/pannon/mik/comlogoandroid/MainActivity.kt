@@ -17,17 +17,8 @@ class MainActivity : AppCompatActivity() {
         var drawCanvas: CanvasView = findViewById(R.id.drawCanvas)
 
         codeEnterButton.setOnClickListener {
-            //TODO: add command interpreter here
-            drawCanvas.addLine(
-                Line(
-                    10F,
-                    10F,
-                    100F,
-                    100F,
-                    10F,
-                    Color.RED
-                )
-            )
+            var command: String = codeInputBox.text.toString()
+            drawCanvas.addCommand(command)
             drawCanvas.invalidate()
         }
     }
