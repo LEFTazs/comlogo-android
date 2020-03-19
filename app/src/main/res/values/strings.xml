@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ComlogoAndroid</string>
+    <string name="welcome_message">Üdvözöl az Imagine Logo!</string>
 </resources>

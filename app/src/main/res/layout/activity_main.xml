@@ -12,7 +12,17 @@
             android:layout_height="match_parent">
         <hu.pannon.mik.comlogoandroid.CanvasView
                 android:layout_width="match_parent"
-                android:layout_height="514dp" android:id="@+id/drawCanvas"/>
+                android:layout_height="388dp" android:id="@+id/drawCanvas"/>
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="77dp" android:id="@+id/codeHistoryViewScroll">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/codeHistoryView"
+                    android:text="@string/welcome_message"
+                    android:scrollbars="vertical" android:textSize="18sp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"/>
+        </ScrollView>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
