@@ -16,22 +16,30 @@ class CanvasView: ImageView {
 
     constructor(context: Context?, attrs: AttributeSet?, defStyle: Int): super(context, attrs, defStyle)
 
-    var lines: MutableList<Line> = mutableListOf()
+    private var canvas: Canvas? = null
 
-    var commandInterpreter = CommandInterpreter()
+    private var commandInterpreter = CommandInterpreter()
 
-    var turtleIcon: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.turtle)
+    private var turtleIcon: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.turtle)
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        this.canvas = canvas
 
-        for (line: Line in lines) {
+        drawLines()
+        drawTurtle()
+    }
+
+    private fun drawLines() {
+        for (line: Line in commandInterpreter.canvasState.lines) {
             val paint = Paint()
             paint.strokeWidth = line.strokeWidth
             paint.color = line.color
             canvas?.drawLine(line.startX, line.startY, line.endX, line.endY, paint)
         }
+    }
 
+    private fun drawTurtle() {
         val turtle = commandInterpreter.canvasState.turtle
         val matrix = Matrix()
         matrix.postTranslate(- turtleIcon.width/2F, - turtleIcon.height/2F)
@@ -41,8 +49,7 @@ class CanvasView: ImageView {
     }
 
     fun addCommand(entry: String) {
-        val newLines = commandInterpreter.interpret(entry)
-        this.lines.addAll(newLines)
+        commandInterpreter.interpret(entry)
     }
 
 }

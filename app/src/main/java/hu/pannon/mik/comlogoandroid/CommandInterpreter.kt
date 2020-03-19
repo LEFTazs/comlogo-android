@@ -4,11 +4,8 @@ import android.graphics.Color
 
 class CommandInterpreter {
     var canvasState = CanvasState()
-    var lines: MutableList<Line> = mutableListOf()
 
-    fun interpret(entry: String): MutableList<Line> {
-        lines.clear()
-
+    fun interpret(entry: String) {
         val commandParts = entry.split(" ")
         val iterator = commandParts.iterator()
         while (iterator.hasNext()) {
@@ -27,10 +24,8 @@ class CommandInterpreter {
             val newY = canvasState.turtle.y.toFloat()
             val newLine = Line(lastX, lastY, newX, newY, canvasState.penStrokeWidth, canvasState.penColor)
             if (canvasState.isPenDown)
-                lines.add(newLine)
+                canvasState.lines.add(newLine)
         }
-
-        return lines
     }
 
     private fun commandMoveForward(iterator: Iterator<String>) {

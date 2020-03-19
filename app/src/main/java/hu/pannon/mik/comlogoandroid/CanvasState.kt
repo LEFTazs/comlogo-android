@@ -3,6 +3,7 @@ package hu.pannon.mik.comlogoandroid
 import android.graphics.Color
 
 class CanvasState {
+    var lines: MutableList<Line> = mutableListOf()
     var isPenDown: Boolean = true
     var penColor: Int = Color.BLACK
     var penStrokeWidth: Float = 5F
