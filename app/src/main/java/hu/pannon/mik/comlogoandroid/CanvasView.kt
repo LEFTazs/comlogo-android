@@ -33,13 +33,11 @@ class CanvasView: ImageView {
         }
 
         val turtle = commandInterpreter.canvasState.turtle
-        var modifiedTurtleIcon = Bitmap.createScaledBitmap(turtleIcon, turtle.width, turtle.height, false)
         val matrix = Matrix()
+        matrix.postTranslate(- turtleIcon.width/2F, - turtleIcon.height/2F)
         matrix.postRotate(turtle.direction.toFloat())
-        modifiedTurtleIcon = Bitmap.createBitmap(modifiedTurtleIcon, 0, 0, modifiedTurtleIcon.width, modifiedTurtleIcon.height, matrix, false)
-        var paint = Paint()
-        paint.alpha = 254
-        canvas?.drawBitmap(modifiedTurtleIcon, turtle.x.toFloat()-20, turtle.y.toFloat()-20, paint)
+        matrix.postTranslate(turtle.x.toFloat(), turtle.y.toFloat())
+        canvas?.drawBitmap(turtleIcon, matrix, null)
     }
 
     fun addCommand(entry: String) {
