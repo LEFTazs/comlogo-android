@@ -19,6 +19,8 @@ class CommandInterpreter {
             when (command) {
                 "előre", "e" -> commandMoveForward(iterator)
                 "hátra", "h" -> commandMoveBackwards(iterator)
+                "jobbra", "j" -> commandTurnRight(iterator)
+                "balra", "b" -> commandTurnLeft(iterator)
             }
 
             val newX = canvasState.turtle.x.toFloat()
@@ -39,5 +41,15 @@ class CommandInterpreter {
     private fun commandMoveBackwards(iterator: Iterator<String>) {
         val distance = iterator.next().toDouble() * -1
         canvasState.turtle.moveForward(distance)
+    }
+
+    private fun commandTurnRight(iterator: Iterator<String>) {
+        val degrees = iterator.next().toDouble()
+        canvasState.turtle.rotate(degrees)
+    }
+
+    private fun commandTurnLeft(iterator: Iterator<String>) {
+        val degrees = iterator.next().toDouble() * -1
+        canvasState.turtle.rotate(degrees)
     }
 }
