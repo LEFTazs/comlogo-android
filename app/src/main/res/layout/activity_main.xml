@@ -21,7 +21,8 @@
                     android:layout_height="wrap_content" android:id="@+id/codeHistoryView"
                     android:text="@string/welcome_message"
                     android:scrollbars="vertical" android:textSize="18sp"
-                    android:scrollbarAlwaysDrawVerticalTrack="true"/>
+                    android:scrollbarAlwaysDrawVerticalTrack="true" android:textColor="@color/fontColor"
+                    app:fontFamily="@font/fixedsys"/>
         </ScrollView>
         <LinearLayout
                 android:orientation="horizontal"
@@ -32,7 +33,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
-                    android:id="@+id/codeInputBox" android:layout_weight="1" android:text="h 10"/>
+                    android:id="@+id/codeInputBox" android:layout_weight="1" android:text="h 10"
+                    android:textColor="@color/fontColor" android:singleLine="true"
+                    app:fontFamily="@font/fixedsys"/>
             <Button
                     android:text="@android:string/ok"
                     android:layout_width="wrap_content"
