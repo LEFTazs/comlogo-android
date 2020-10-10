@@ -52,4 +52,8 @@ class CanvasView: ImageView {
         commandInterpreter.interpret(entry)
     }
 
+    fun clearLines() {
+        commandInterpreter.canvasState.lines.clear()
+    }
+
 }

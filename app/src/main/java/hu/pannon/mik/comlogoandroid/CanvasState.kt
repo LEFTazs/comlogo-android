@@ -7,5 +7,5 @@ class CanvasState {
     var isPenDown: Boolean = true
     var penColor: Int = Color.BLACK
     var penStrokeWidth: Float = 5F
-    var turtle: Turtle = Turtle(0.0, 0.0)
+    var turtle: Turtle = Turtle(400.0, 500.0)
 }

@@ -1,13 +1,14 @@
 package hu.pannon.mik.comlogoandroid
 
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ScrollView
 import android.widget.TextView
-import androidx.core.content.res.ResourcesCompat
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +31,13 @@ class MainActivity : AppCompatActivity() {
             drawCanvas.addCommand(command)
             drawCanvas.invalidate()
         }
+
+        val mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val mSensorListener = ShakeDetector(drawCanvas)
+        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+            SensorManager.SENSOR_DELAY_NORMAL)
     }
+
+
 
 }
