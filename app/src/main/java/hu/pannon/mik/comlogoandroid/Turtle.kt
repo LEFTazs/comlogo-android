@@ -38,4 +38,9 @@ class Turtle(var x: Double, var y: Double) {
 
         this.move(xDistance, yDistance)
     }
+
+    fun jump(x: Double, y: Double) {
+        this.x = x
+        this.y = y
+    }
 }

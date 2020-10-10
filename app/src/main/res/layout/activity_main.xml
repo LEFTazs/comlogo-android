@@ -35,7 +35,7 @@
                     android:inputType="text"
                     android:ems="10"
                     android:id="@+id/codeInputBox" android:layout_weight="1"
-                    android:text="ism 10 tf e 10 tl e 10"
+                    android:text=""
                     android:textColor="@color/fontColor" android:singleLine="true"
                     app:fontFamily="@font/fixedsys"/>
             <Button

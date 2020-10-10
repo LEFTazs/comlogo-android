@@ -28,6 +28,7 @@ class CommandInterpreter {
             "tollatfel", "tf" -> commandPenOff()
             "törölrajzlap", "tr", "törölképernyő", "törölkép" -> commandClearCanvas()
             "ismétlés", "ism" -> commandRepeat()
+            "haza" -> commandHome()
         }
     }
 
@@ -107,5 +108,9 @@ class CommandInterpreter {
             interpret(remainingCommands)
         }
         commandIterator = originalIterator
+    }
+
+    private fun commandHome() {
+        canvasState.turtle.jump(400.0, 500.0)
     }
 }
