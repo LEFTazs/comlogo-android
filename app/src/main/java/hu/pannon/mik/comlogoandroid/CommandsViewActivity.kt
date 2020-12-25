@@ -1,12 +1,13 @@
 package hu.pannon.mik.comlogoandroid
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import com.google.android.material.snackbar.Snackbar
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.commands_view.*
 
 class CommandsViewActivity : AppCompatActivity() {
 
@@ -21,5 +22,20 @@ class CommandsViewActivity : AppCompatActivity() {
 
         val dbMediator = DatabaseMediator(adapter)
         dbMediator.execute()
+
+        ItemClickSupport.addTo(recyclerView).setOnItemClickListener(
+            object : OnItemClickListener, ItemClickSupport.OnItemClickListener {
+                override fun onItemClicked(recyclerView: RecyclerView?, position: Int, v: View?) {
+                    val chosenCommand: String = adapter.getItem(position).command
+                    val intent = Intent(this@CommandsViewActivity, MainActivity::class.java).apply {
+                        putExtra("chosenCommand", chosenCommand)
+                    }
+                    startActivity(intent)
+                }
+
+                override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                }
+            }
+        )
     }
 }

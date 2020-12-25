@@ -39,4 +39,6 @@ class CommandsAdapter (private var commands: ArrayList<SavedCommand> = ArrayList
         commands.addAll(newCommands)
         notifyDataSetChanged()
     }
+
+    fun getItem(position: Int): SavedCommand = commands[position]
 }

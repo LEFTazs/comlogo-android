@@ -14,30 +14,38 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var codeEnterButton: Button
+    lateinit var codeInputBox: EditText
+    lateinit var drawCanvas: CanvasView
+    lateinit var codeHistoryView: TextView
+    lateinit var codeHistoryViewScroll: ScrollView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var codeEnterButton: Button = findViewById (R.id.codeEnterButton)
-        var codeInputBox: EditText = findViewById(R.id.codeInputBox)
-        var drawCanvas: CanvasView = findViewById(R.id.drawCanvas)
-        var codeHistoryView: TextView = findViewById(R.id.codeHistoryView)
-        var codeHistoryViewScroll: ScrollView = findViewById(R.id.codeHistoryViewScroll)
+        codeEnterButton = findViewById (R.id.codeEnterButton)
+        codeInputBox = findViewById(R.id.codeInputBox)
+        drawCanvas = findViewById(R.id.drawCanvas)
+        codeHistoryView = findViewById(R.id.codeHistoryView)
+        codeHistoryViewScroll = findViewById(R.id.codeHistoryViewScroll)
 
-        codeEnterButton.setOnClickListener {
-            var command: String = codeInputBox.text.toString()
-
-            codeHistoryView.text = codeHistoryView.text.toString() + "\n? " + command
-            codeHistoryViewScroll.fullScroll(ScrollView.FOCUS_DOWN)
-
-            drawCanvas.addCommand(command)
-            drawCanvas.invalidate()
+        if (intent.hasExtra("chosenCommand")) {
+            val startingCommand = intent.getStringExtra("chosenCommand")
+            codeInputBox.setText(startingCommand)
         }
 
-        val mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        val mSensorListener = ShakeDetector(drawCanvas)
-        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-            SensorManager.SENSOR_DELAY_NORMAL)
+        setUpShakeSensor()
+    }
+
+    fun commandEntered(view: View) {
+        var command: String = codeInputBox.text.toString()
+
+        codeHistoryView.text = codeHistoryView.text.toString() + "\n? " + command
+        codeHistoryViewScroll.fullScroll(ScrollView.FOCUS_DOWN)
+
+        drawCanvas.addCommand(command)
+        drawCanvas.invalidate()
     }
 
     fun switchToCommandsView(view: View) {
@@ -46,10 +54,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addNewCommand(view: View) {
-        var codeInputBox: EditText = findViewById(R.id.codeInputBox)
         codeInputBox.text.toString()
         //TODO
     }
 
-
+    private fun setUpShakeSensor() {
+        val mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val mSensorListener = ShakeDetector(drawCanvas)
+        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+            SensorManager.SENSOR_DELAY_NORMAL)
+    }
 }
