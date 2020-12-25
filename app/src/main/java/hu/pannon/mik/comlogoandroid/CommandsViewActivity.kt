@@ -20,7 +20,7 @@ class CommandsViewActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val dbMediator = DatabaseMediator(adapter)
+        val dbMediator = DatabaseGetter(adapter)
         dbMediator.execute()
 
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(

@@ -54,8 +54,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addNewCommand(view: View) {
-        codeInputBox.text.toString()
-        //TODO
+        val intent = Intent(this, CommandRegistererActivity::class.java).apply {
+            putExtra("commandToSave", codeInputBox.text.toString())
+        }
+        startActivity(intent)
     }
 
     private fun setUpShakeSensor() {

@@ -6,7 +6,7 @@ import java.net.URL
 import java.net.HttpURLConnection
 
 
-class DatabaseMediator(private var adapter: CommandsAdapter) : AsyncTask<String, Void, MutableList<SavedCommand>>() {
+class DatabaseGetter(private var adapter: CommandsAdapter) : AsyncTask<String, Void, MutableList<SavedCommand>>() {
 
     private val url = URL("http://comlogowebserver.nhely.hu/")
     private val gson = Gson()

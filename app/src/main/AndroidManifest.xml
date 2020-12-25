@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".CommandsViewActivity">
         </activity>
+        <activity android:name=".CommandRegistererActivity">
+        </activity>
     </application>
 
 </manifest>
