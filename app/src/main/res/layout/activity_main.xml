@@ -10,7 +10,7 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" android:id="@+id/linearLayout">
         <hu.pannon.mik.comlogoandroid.CanvasView
                 android:layout_width="match_parent"
                 android:layout_height="388dp" android:id="@+id/drawCanvas"/>
@@ -26,22 +26,44 @@
                     app:fontFamily="@font/fixedsys"/>
         </ScrollView>
         <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/codeInputBox" android:layout_weight="1"
-                    android:text=""
-                    android:textColor="@color/fontColor" android:singleLine="true"
-                    app:fontFamily="@font/fixedsys"/>
-            <Button
-                    android:text="@android:string/ok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/codeEnterButton" android:layout_weight="1"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:ems="10"
+                        android:id="@+id/codeInputBox" android:layout_weight="1"
+                        android:text=""
+                        android:textColor="@color/fontColor" android:singleLine="true"
+                        app:fontFamily="@font/fixedsys"/>
+                <Button
+                        android:text="@android:string/ok"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/codeEnterButton"
+                        android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:gravity="bottom">
+                <Button
+                        android:text="Command List"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" android:id="@+id/commandListButton"
+                        android:layout_weight="1"
+                        android:onClick="switchToCommandsView"/>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true" app:srcCompat="@android:drawable/ic_input_add"
+                        android:id="@+id/addNewCommandButton" android:onClick="addNewCommand"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

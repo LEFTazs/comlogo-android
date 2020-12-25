@@ -1,9 +1,11 @@
 package hu.pannon.mik.comlogoandroid
 
 import android.content.Context
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ScrollView
@@ -38,6 +40,16 @@ class MainActivity : AppCompatActivity() {
             SensorManager.SENSOR_DELAY_NORMAL)
     }
 
+    fun switchToCommandsView(view: View) {
+        val intent = Intent(this, CommandsViewActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun addNewCommand(view: View) {
+        var codeInputBox: EditText = findViewById(R.id.codeInputBox)
+        codeInputBox.text.toString()
+        //TODO
+    }
 
 
 }
