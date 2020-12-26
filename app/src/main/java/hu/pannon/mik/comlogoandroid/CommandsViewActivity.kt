@@ -30,7 +30,8 @@ class CommandsViewActivity : AppCompatActivity() {
                     val intent = Intent(this@CommandsViewActivity, MainActivity::class.java).apply {
                         putExtra("chosenCommand", chosenCommand)
                     }
-                    startActivity(intent)
+                    this@CommandsViewActivity.setResult(1, intent)
+                    this@CommandsViewActivity.finish()
                 }
 
                 override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

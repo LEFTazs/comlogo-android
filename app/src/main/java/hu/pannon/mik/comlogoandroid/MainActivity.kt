@@ -38,6 +38,15 @@ class MainActivity : AppCompatActivity() {
         setUpShakeSensor()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (data != null && data.hasExtra("chosenCommand")) {
+            val startingCommand = data.getStringExtra("chosenCommand")
+            codeInputBox.setText(startingCommand)
+        }
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
     fun commandEntered(view: View) {
         var command: String = codeInputBox.text.toString()
 
@@ -50,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     fun switchToCommandsView(view: View) {
         val intent = Intent(this, CommandsViewActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, 1)
     }
 
     fun addNewCommand(view: View) {

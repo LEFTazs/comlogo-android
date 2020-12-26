@@ -4,10 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.widget.Toast
-import com.google.gson.Gson
+import androidx.appcompat.app.AppCompatActivity
 import java.net.URL
 import java.net.HttpURLConnection
-import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 
@@ -44,7 +43,6 @@ class DatabasePoster(private val context: Context) : AsyncTask<String, Void, Uni
 
         Toast.makeText(context, "Küldés befejezve.", Toast.LENGTH_LONG).show()
 
-        val intent = Intent(context, MainActivity::class.java)
-        context.startActivity(intent)
+        (context as AppCompatActivity).finish()
     }
 }
