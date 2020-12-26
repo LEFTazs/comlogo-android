@@ -1,12 +1,13 @@
 package hu.pannon.mik.comlogoandroid
 
+import android.content.Context
 import android.os.AsyncTask
 import com.google.gson.Gson
 import java.net.URL
 import java.net.HttpURLConnection
 
 
-class DatabaseGetter(private var adapter: CommandsAdapter) : AsyncTask<String, Void, MutableList<SavedCommand>>() {
+class DatabaseGetter(private var context: Context, private var adapter: CommandsAdapter) : AsyncTask<String, Void, MutableList<SavedCommand>>() {
 
     private val url = URL("http://comlogowebserver.nhely.hu/")
     private val gson = Gson()
@@ -27,6 +28,7 @@ class DatabaseGetter(private var adapter: CommandsAdapter) : AsyncTask<String, V
 
     override fun onPostExecute(result: MutableList<SavedCommand>) {
         adapter.addAll(result)
+        (context as CommandsViewActivity).finishedLoading()
         super.onPostExecute(result)
     }
 }

@@ -1,5 +1,6 @@
 package hu.pannon.mik.comlogoandroid
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CommandsViewActivity : AppCompatActivity() {
 
+    private lateinit var progressBar: ProgressDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.commands_view)
@@ -20,8 +23,16 @@ class CommandsViewActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val dbMediator = DatabaseGetter(adapter)
+        val dbMediator = DatabaseGetter(this, adapter)
         dbMediator.execute()
+
+        progressBar = ProgressDialog(this).also {
+            it.setMessage("Töltés..")
+            it.setTitle("Adatbázis elérése")
+            it.isIndeterminate = false
+            it.setCancelable(false)
+            it.show()
+        }
 
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(
             object : OnItemClickListener, ItemClickSupport.OnItemClickListener {
@@ -38,5 +49,9 @@ class CommandsViewActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    fun finishedLoading() {
+        progressBar.dismiss()
     }
 }
